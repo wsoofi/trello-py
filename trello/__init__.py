@@ -1,4 +1,5 @@
-from urllib.parse import quote_plus
+#from urllib import quote_plus #python 2
+from urllib.parse import quote_plus  #python 3
 from .actions import Actions
 from .boards import Boards
 from .cards import Cards
@@ -7,9 +8,9 @@ from .lists import Lists
 from .members import Members
 from .notifications import Notifications
 from .organizations import Organizations
-from .search import Search
 from .tokens import Tokens
 from .types import Types
+
 
 class TrelloApi(object):
     def __init__(self, apikey, token=None):
@@ -23,9 +24,9 @@ class TrelloApi(object):
         self.members = Members(apikey, token)
         self.notifications = Notifications(apikey, token)
         self.organizations = Organizations(apikey, token)
-        self.search = Search(apikey, token)
         self.tokens = Tokens(apikey, token)
         self.types = Types(apikey, token)
+        
 
     def set_token(self, token):
         self._token = token
@@ -37,9 +38,9 @@ class TrelloApi(object):
         self.members._token = token
         self.notifications._token = token
         self.organizations._token = token
-        self.search._token = token
         self.tokens._token = token
         self.types._token = token
+        
 
     def get_token_url(self, app_name, expires='30days', write_access=True):
         return 'https://trello.com/1/authorize?key=%s&name=%s&expiration=%s&response_type=token&scope=%s' % (self._apikey, quote_plus(app_name), expires, 'read,write' if write_access else 'read')
