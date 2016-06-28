@@ -1,5 +1,6 @@
-#from urllib import quote_plus #python 2
-from urllib.parse import quote_plus  #python 3
+
+
+
 from .actions import Actions
 from .boards import Boards
 from .cards import Cards
@@ -11,7 +12,16 @@ from .organizations import Organizations
 from .tokens import Tokens
 from .types import Types
 
+import sys
 
+req_version = (3,0)
+cur_version = sys.version_info
+
+if cur_version >= req_version:
+    from urllib.parse import quote_plus  #python 3\
+else:
+    from urllib import quote_plus #python 2
+    
 class TrelloApi(object):
     def __init__(self, apikey, token=None):
         self._apikey = apikey
