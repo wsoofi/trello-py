@@ -23,8 +23,8 @@ class Boards(object):
         resp.raise_for_status()
         return json.loads(resp.text)
 
-    def get_card(self, board_id, actions=None, attachments=None, members=None, checkItemStates=None, checklists=None, filter=None, fields=None):
-        resp = requests.get("https://trello.com/1/boards/%s/cards" % (board_id), params=dict(key=self._apikey, token=self._token, actions=actions, attachments=attachments, members=members, checkItemStates=checkItemStates, checklists=checklists, filter=filter, fields=fields), data=None)
+    def get_card(self, board_id, actions=None, attachments=None, members=None, checkItemStates=None, checklists=None, filter=None, fields=None, since = None):
+        resp = requests.get("https://trello.com/1/boards/%s/cards" % (board_id), params=dict(key=self._apikey, token=self._token, actions=actions, attachments=attachments, members=members, checkItemStates=checkItemStates, checklists=checklists, filter=filter, fields=fields, since = since), data=None)
         resp.raise_for_status()
         return json.loads(resp.text)
 
@@ -43,8 +43,8 @@ class Boards(object):
         resp.raise_for_status()
         return json.loads(resp.text)
 
-    def get_list(self, board_id, cards=None, card_fields=None, filter=None, fields=None):
-        resp = requests.get("https://trello.com/1/boards/%s/lists" % (board_id), params=dict(key=self._apikey, token=self._token, cards=cards, card_fields=card_fields, filter=filter, fields=fields), data=None)
+    def get_list(self, board_id, cards=None, card_fields=None, filter=None, fields=None, since = None):
+        resp = requests.get("https://trello.com/1/boards/%s/lists" % (board_id), params=dict(key=self._apikey, token=self._token, cards=cards, card_fields=card_fields, filter=filter, fields=fields, since = since), data=None)
         resp.raise_for_status()
         return json.loads(resp.text)
 
